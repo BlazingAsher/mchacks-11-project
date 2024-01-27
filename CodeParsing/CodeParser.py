@@ -47,10 +47,10 @@ class CodeParser:
 
 
 
-parser = CodeParser("OCR/cCode.txt")
-
+parser = CodeParser("code.txt")
 parser.run_c_code()
 print(parser.print_code_output())
+
 
 
 
