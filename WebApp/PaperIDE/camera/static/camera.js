@@ -41,8 +41,6 @@
     //   }
       video = document.getElementById("video");
       canvas = document.getElementById("canvas");
-      photo = document.getElementById("photo");
-      startbutton = document.getElementById("startbutton");
   
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: false })
@@ -76,30 +74,8 @@
         },
         false,
       );
-  
-      startbutton.addEventListener(
-        "click",
-        (ev) => {
-          takepicture();
-          ev.preventDefault();
-        },
-        false,
-      );
-  
-      clearphoto();
     }
   
-    // Fill the photo with an indication that none has been
-    // captured.
-  
-    function clearphoto() {
-      const context = canvas.getContext("2d");
-      context.fillStyle = "#AAA";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-  
-      const data = canvas.toDataURL("image/png");
-      photo.setAttribute("src", data);
-    }
   
     // Capture a photo by fetching the current contents of the video
     // and drawing it into a canvas, then converting that to a PNG
@@ -115,12 +91,8 @@
         context.drawImage(video, 0, 0, width, height);
   
         const data = canvas.toDataURL("image/png");
-        photo.setAttribute("src", data);
 
         return data;
-      } else {
-        clearphoto();
-        return null;
       }
     }
   
@@ -130,7 +102,7 @@
 
     setInterval(() => {
         const pictureData = takepicture();
-
+        console.log(pictureData)
         //send to server
 
 
