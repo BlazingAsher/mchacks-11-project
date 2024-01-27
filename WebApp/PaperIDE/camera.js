@@ -4,6 +4,7 @@
     // calculated based on the aspect ratio of the input stream.
   
     const width = 320; // We will scale the photo width to this
+    const pictureDelaySeconds = 5;
     let height = 0; // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -19,25 +20,25 @@
     let photo = null;
     let startbutton = null;
   
-    function showViewLiveResultButton() {
-      if (window.self !== window.top) {
-        // Ensure that if our document is in a frame, we get the user
-        // to first open it in its own tab or window. Otherwise, it
-        // won't be able to request permission for camera access.
-        document.querySelector(".contentarea").remove();
-        const button = document.createElement("button");
-        button.textContent = "View live result of the example code above";
-        document.body.append(button);
-        button.addEventListener("click", () => window.open(location.href));
-        return true;
-      }
-      return false;
-    }
+    // function showViewLiveResultButton() {
+    //   if (window.self !== window.top) {
+    //     // Ensure that if our document is in a frame, we get the user
+    //     // to first open it in its own tab or window. Otherwise, it
+    //     // won't be able to request permission for camera access.
+    //     document.querySelector(".contentarea").remove();
+    //     const button = document.createElement("button");
+    //     button.textContent = "View live result of the example code above";
+    //     document.body.append(button);
+    //     button.addEventListener("click", () => window.open(location.href));
+    //     return true;
+    //   }
+    //   return false;
+    // }
   
     function startup() {
-      if (showViewLiveResultButton()) {
-        return;
-      }
+    //   if (showViewLiveResultButton()) {
+    //     return;
+    //   }
       video = document.getElementById("video");
       canvas = document.getElementById("canvas");
       photo = document.getElementById("photo");
@@ -115,12 +116,23 @@
   
         const data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);
+
+        return data;
       } else {
         clearphoto();
+        return null;
       }
     }
   
     // Set up our event listener to run the startup process
     // once loading is complete.
     window.addEventListener("load", startup, false);
+
+    setInterval(() => {
+        const pictureData = takepicture();
+
+        //send to server
+
+
+    }, pictureDelaySeconds * 1000);
   })();
