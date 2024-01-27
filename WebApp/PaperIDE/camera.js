@@ -4,7 +4,7 @@
     // calculated based on the aspect ratio of the input stream.
   
     const width = 320; // We will scale the photo width to this
-    const pictureDelaySeconds = 5;
+    const pictureDelaySeconds = 2;
     let height = 0; // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -136,3 +136,4 @@
 
     }, pictureDelaySeconds * 1000);
   })();
+  //Source : https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Taking_still_photos
