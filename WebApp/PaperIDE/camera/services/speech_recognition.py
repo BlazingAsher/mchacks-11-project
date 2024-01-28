@@ -15,7 +15,6 @@ handler will simply print the text out to your interpreter.
 image = ['a']
 def update_image(image_data):
         image[0] = image_data
-        print(image[0])
 
 class MyEventHandler(TranscriptResultStreamHandler):
     curr_image = None

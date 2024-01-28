@@ -91,6 +91,7 @@
             canvas.setAttribute("width", width);
             canvas.setAttribute("height", height);
             streaming = true;
+            sendingImage();
           }
         },
         false,
