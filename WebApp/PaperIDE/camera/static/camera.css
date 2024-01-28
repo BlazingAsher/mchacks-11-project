@@ -1,48 +1,71 @@
+#logo{
+  display: block;
+  max-width:50%;
+  max-height:50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#compile{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 30px;
+  font-family: "Aptos Black", "Arial", sans-serif;
+  font-size: 20 px;
+  font-weight: 900;
+  background-color: #316433;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px black;
+
+}
+
 #video {
-    border: 1px solid black;
-    box-shadow: 2px 2px 3px black;
-    width: 320px;
-    height: 240px;
-  }
-  
-  #photo {
-    border: 1px solid black;
-    box-shadow: 2px 2px 3px black;
-    width: 320px;
-    height: 240px;
-  }
-  
-  #canvas {
-    display: none;
-  }
-  
-  .camera {
-    width: 340px;
-    display: inline-block;
-  }
-  
-  .output {
-    width: 340px;
-    display: inline-block;
-    vertical-align: top;
-  }
-  
-  #message {
-    display: block;
-    /*position: relative;*/
-    /*margin-left: auto;
-    margin-right: auto;*/
-    bottom: 32px;
-    background-color: rgba(37, 115, 146, 0.5);
-    border: 1px solid rgb(0, 0, 0);
-    box-shadow: 0px 0px 1px 2px rgb(0 0 0 / 20%);
-    font-size: 14px;
-    font-family: "Lucida Grande", "Arial", sans-serif;
-    color: rgb(0, 0, 0);
-  }
-  
-  .contentarea {
-    font-size: 16px;
-    font-family: "Lucida Grande", "Arial", sans-serif;
-    width: 760px;
-  }
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width: 400px;
+  height: 600px;
+}
+
+
+.camera {
+  width: 340px;
+  display: inline-block;
+}
+
+.output {
+  width: 340px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#message {
+  display: block;
+  /*position: relative;*/
+  /*margin-left: auto;
+  margin-right: auto;*/
+  bottom: 32px;
+  background-color: rgba(37, 115, 146, 0.5);
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: 0px 0px 1px 2px rgb(0 0 0 / 20%);
+  font-size: 14px;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+.contentarea {
+  font-size: 40px;
+  font-family: "Bradley Hand ITC","Monotype Corsiva", "Arial", sans-serif;
+  width: 760px;
+  margin:auto;
+  text-align:center;
+}
+
+body {
+  background-image: url("Paper.jpg");
+  background-color: #cccccc;
+  background-size: cover; /* Resize the background image to cover the entire container */
+ }
