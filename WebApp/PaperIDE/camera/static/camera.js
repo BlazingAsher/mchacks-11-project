@@ -35,15 +35,36 @@
     //   return false;
     // }
   
-    function startup() {
+    async function startup() {
     //   if (showViewLiveResultButton()) {
     //     return;
     //   }
       video = document.getElementById("video");
       canvas = document.getElementById("canvas");
   
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      good_device = devices[1];
+      console.log(devices)
+      // var selected = 0;
+      // $('#dialog').dialog({
+      //   title: "Prompt",
+      //   buttons: {
+      //     "First": function() {
+      //       selected = 1;
+      //     },
+      //     "Second": function() {
+      //       selected = 2;
+      //     },
+      //     "Third": function() {
+      //       selected = 3;
+      //     },
+      //     "Fourth": function() {
+      //       selected = 4;
+      //     }
+      //   }
+      // });
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: false })
+        .getUserMedia({ video: { facingMode: "environment" }, audio: false })
         .then((stream) => {
           video.srcObject = stream;
           video.play();
@@ -95,15 +116,29 @@
         return data;
       }
     }
+
   
     // Set up our event listener to run the startup process
     // once loading is complete.
     window.addEventListener("load", startup, false);
 
     setInterval(() => {
-        const pictureData = takepicture();
+        const pictureData = takepicture().split(",").pop();
+
         console.log(pictureData)
         //send to server
+
+        var xhr = new XMLHttpRequest();
+        var url = "/camera/submitImage";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Got response from server after submitting image: ", xhr.responseText)
+            }
+        };
+        var data = JSON.stringify({"imageData": pictureData});
+        xhr.send(data);
 
 
     }, pictureDelaySeconds * 1000);
