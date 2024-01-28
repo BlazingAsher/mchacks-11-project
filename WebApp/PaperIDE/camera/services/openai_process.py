@@ -19,7 +19,7 @@ def get_image_info(image_data_b64):
                 "content": [
                     {
                         "type": "text",
-                        "text": "Give me a transcription of the code"
+                        "text": "Translate the code in the picture into equivalent Python code without any comments or formatting. Provide only the Python code as the answer. Do not use any backticks"
                     },
                     {
                         "type": "image_url",
