@@ -5,6 +5,7 @@ import requests
 def get_image_info(image_data_b64):
     # OpenAI API Key
     api_key = os.getenv("OPENAI_API_KEY")
+    # doesnt fucking work
 
     headers = {
         "Content-Type": "application/json",
