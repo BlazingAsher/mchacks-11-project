@@ -1,5 +1,7 @@
 import asyncio
 import sounddevice
+import threading
+from . import start_processing_pipeline
 from amazon_transcribe.client import TranscribeStreamingClient
 from amazon_transcribe.handlers import TranscriptResultStreamHandler
 from amazon_transcribe.model import TranscriptEvent
@@ -10,7 +12,14 @@ Here's an example of a custom event handler you can extend to
 process the returned transcription results as needed. This
 handler will simply print the text out to your interpreter.
 """
+image = ['a']
+def update_image(image_data):
+        image[0] = image_data
+        print(image[0])
+
 class MyEventHandler(TranscriptResultStreamHandler):
+    curr_image = None
+
     async def handle_transcript_event(self, transcript_event: TranscriptEvent):
         # This handler can be implemented to handle transcriptions as needed.
         # Here's an example to get started.
@@ -18,6 +27,9 @@ class MyEventHandler(TranscriptResultStreamHandler):
         for result in results:
                 for alt in result.alternatives:
                     if not result.is_partial:
+                        if (alt.transcript.lower() == "compile."):
+                            if image[0] != 'a':
+                                start_processing_pipeline.process_image(image[0])
                         print(alt.transcript)
 
 
@@ -73,6 +85,7 @@ async def basic_transcribe():
 
 
 def start_speech_recognition():
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     loop.run_until_complete(basic_transcribe())
     loop.close()

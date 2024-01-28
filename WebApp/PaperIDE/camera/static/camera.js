@@ -95,9 +95,9 @@
         },
         false,
       );
+
+      
     }
-  
-  
     // Capture a photo by fetching the current contents of the video
     // and drawing it into a canvas, then converting that to a PNG
     // format data URL. By drawing it on an offscreen canvas and then
@@ -125,6 +125,8 @@
       compile = document.getElementById("compile");
       compile.addEventListener("click", sendingImage);
     }
+
+    
     
     function sendingImage() {
       const pictureData = takepicture().split(",").pop();

@@ -7,6 +7,7 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 from .image_processing_worker import submit_image
+from .services.speech_recognition import update_image
 
 import json
 
@@ -21,9 +22,8 @@ def index(request):
 def submitImage(request):
     try:
         req_obj = json.loads(request.body)
-
         # submit an image to the processing queue, so that request doesn't take forever
-        submit_image(req_obj["imageData"])
+        update_image(req_obj["imageData"])
         return HttpResponse("OK")
     except json.JSONDecodeError:
         return HttpResponse("Bad JSON!")

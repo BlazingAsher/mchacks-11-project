@@ -9,6 +9,7 @@
 import queue
 import threading
 from .services.start_processing_pipeline import process_image
+from .services.speech_recognition import start_speech_recognition
 
 q = queue.Queue(maxsize=1)
 
@@ -27,6 +28,12 @@ def worker():
         image_base64 = q.get()
         process_image(image_base64)
 
+def worker2():
+    while True:
+        start_speech_recognition()
 
 x = threading.Thread(target=worker, args=())
 x.start()
+
+y = threading.Thread(target=worker2, args=())
+y.start()
