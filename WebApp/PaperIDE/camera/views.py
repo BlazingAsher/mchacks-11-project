@@ -19,12 +19,14 @@ def index(request):
 # { "imageData": "<base64 encoded string of the image>" }
 @csrf_exempt
 def submitImage(request):
-    req_obj = json.loads(request.body)
+    try:
+        req_obj = json.loads(request.body)
 
-    # submit an image to the processing queue, so that request doesn't take forever
-    submit_image(req_obj["imageData"])
-
-    return HttpResponse("OK")
+        # submit an image to the processing queue, so that request doesn't take forever
+        submit_image(req_obj["imageData"])
+        return HttpResponse("OK")
+    except json.JSONDecodeError:
+        return HttpResponse("Bad JSON!")
 
 def Home(request):
     return render(request, "")
