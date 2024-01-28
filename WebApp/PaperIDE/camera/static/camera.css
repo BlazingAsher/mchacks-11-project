@@ -1,3 +1,10 @@
+#logo{
+  display: block;
+  max-width:50%;
+  max-height:50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 #compile{
   display: block;
   margin-left: auto;
